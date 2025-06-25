@@ -62,9 +62,8 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col md:flex-row w-full max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
-        {/* Gambar */}
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-200 h-64 md:h-80">
+      <div className="flex flex-col md:flex-row w-full max-w-3xl max-h-[500px] bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+        <div className="w-full md:w-1/2 flex-shrink-0 flex items-center justify-center bg-gray-200 h-48 md:h-full max-h-[500px]">
           <img
             aria-hidden="true"
             className="object-contain w-full h-full"
