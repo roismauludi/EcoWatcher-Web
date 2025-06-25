@@ -62,17 +62,17 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col md:flex-row w-full max-w-3xl h-auto md:h-[400px] bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+      <div className="flex flex-col md:flex-row w-full max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
         {/* Gambar hanya tampil di desktop */}
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-200 h-64 md:h-full">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-200 p-4">
           <img
             aria-hidden="true"
-            className="object-contain w-full h-full p-6"
+            className="object-contain w-full h-48 md:h-72"
             src="/assets/img/sampah-daur-ulang.png"
             alt="Office"
           />
         </div>
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 h-full">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8">
           <div className="w-full max-w-md">
             <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
               Login
