@@ -11,6 +11,7 @@ module.exports = windmill({
     "./context/**/*.{js,ts,jsx,tsx}",
     "./routes/**/*.{js,ts,jsx,tsx}",
     "./example/components/**/*.{js,ts,jsx,tsx}",
+    "./example/containers/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
