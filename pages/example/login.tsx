@@ -64,10 +64,10 @@ const LoginPage: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <div className="flex w-full max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
         {/* Gambar hanya tampil di desktop */}
-        <div className="hidden md:block md:w-1/2">
+        <div className="hidden md:flex md:w-1/2 items-center justify-center bg-white">
           <img
             aria-hidden="true"
-            className="object-cover w-full h-full"
+            className="object-contain w-full h-full max-h-[400px] p-8"
             src="/assets/img/sampah-daur-ulang.png"
             alt="Office"
           />
