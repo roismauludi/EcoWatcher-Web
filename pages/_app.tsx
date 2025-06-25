@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "tailwindcss/tailwind.css";
 
 import React, { FC } from "react";
 import { Windmill } from "@windmill/react-ui";
