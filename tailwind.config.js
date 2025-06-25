@@ -8,6 +8,8 @@ module.exports = windmill({
     "./components/**/*.{js,ts,jsx,tsx}",
     "./containers/**/*.{js,ts,jsx,tsx}",
     "./example/**/*.{js,ts,jsx,tsx}",
+    "./context/**/*.{js,ts,jsx,tsx}",
+    "./routes/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
