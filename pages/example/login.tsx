@@ -61,10 +61,10 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col md:flex-row w-full max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
-        {/* Gambar hanya tampil di desktop */}
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-200 h-48 md:h-80">
+        {/* Gambar */}
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-200 h-64 md:h-80">
           <img
             aria-hidden="true"
             className="object-contain w-full h-full"
