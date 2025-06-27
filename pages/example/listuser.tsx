@@ -269,182 +269,121 @@ function ListUser() {
       </TableContainer>
 
       {/* Modal Detail User */}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="p-6">
-          <h4 className="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-300">
-            {selectedUser ? "Detail Pengguna" : "Tambah Kurir Baru"}
-          </h4>
-          {selectedUser ? (
-            <div className="grid grid-cols-1 gap-4">
-              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-                  Informasi Pribadi
-                </h5>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Nama
-                    </p>
-                    <p className="font-medium text-gray-800 dark:text-gray-100">
-                      {selectedUser.nama}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Email
-                    </p>
-                    <p className="font-medium text-gray-800 dark:text-gray-100">
-                      {selectedUser.email}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Level
-                    </p>
-                    <p className="font-medium">
-                      <Badge type={getBadgeType(selectedUser.level)}>
-                        {selectedUser.level}
-                      </Badge>
-                    </p>
+      {selectedUser && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen px-4">
+            <div className="fixed inset-0 bg-gray-500 dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 transition-opacity"></div>
+            <div className="relative bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full p-6 shadow-xl overflow-x-auto">
+              <h4 className="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-300">
+                Detail Pengguna
+              </h4>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+                    Informasi Pribadi
+                  </h5>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Nama
+                      </p>
+                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                        {selectedUser.nama}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Email
+                      </p>
+                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                        {selectedUser.email}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Level
+                      </p>
+                      <p className="font-medium">
+                        <Badge type={getBadgeType(selectedUser.level)}>
+                          {selectedUser.level}
+                        </Badge>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-                  Informasi Bank
-                </h5>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Bank
-                    </p>
-                    <p className="font-medium text-gray-800 dark:text-gray-100">
-                      {selectedUser.jenisBank}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Nama Rekening
-                    </p>
-                    <p className="font-medium text-gray-800 dark:text-gray-100">
-                      {selectedUser.namaRekening}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Nomor Rekening
-                    </p>
-                    <p className="font-medium text-gray-800 dark:text-gray-100">
-                      {selectedUser.noRekening}
-                    </p>
+                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+                    Informasi Bank
+                  </h5>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Bank
+                      </p>
+                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                        {selectedUser.jenisBank}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Nama Rekening
+                      </p>
+                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                        {selectedUser.namaRekening}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Nomor Rekening
+                      </p>
+                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                        {selectedUser.noRekening}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-                  Informasi Point
-                </h5>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Total Point
-                    </p>
-                    <p className="font-medium text-lg text-gray-800 dark:text-gray-100">
-                      {selectedUser.point?.toLocaleString("id-ID") || "0"} Point
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Point Masuk
-                    </p>
-                    <p className="font-medium text-lg text-green-600 text-gray-800 dark:text-gray-100">
-                      +
-                      {selectedUser.totalpointmasuk?.toLocaleString("id-ID") ||
-                        "0"}{" "}
-                      Point
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Point Keluar
-                    </p>
-                    <p className="font-medium text-lg text-red-600 text-gray-800 dark:text-gray-100">
-                      -
-                      {selectedUser.totalpointkeluar?.toLocaleString("id-ID") ||
-                        "0"}{" "}
-                      Point
-                    </p>
+                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+                    Informasi Point
+                  </h5>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Total Point
+                      </p>
+                      <p className="font-medium text-lg text-gray-800 dark:text-gray-100">
+                        {selectedUser.point?.toLocaleString("id-ID") || "0"}{" "}
+                        Point
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Point Masuk
+                      </p>
+                      <p className="font-medium text-lg text-green-600 text-gray-800 dark:text-gray-100">
+                        +
+                        {selectedUser.totalpointmasuk?.toLocaleString(
+                          "id-ID"
+                        ) || "0"}{" "}
+                        Point
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Point Keluar
+                      </p>
+                      <p className="font-medium text-lg text-red-600 text-gray-800 dark:text-gray-100">
+                        -
+                        {selectedUser.totalpointkeluar?.toLocaleString(
+                          "id-ID"
+                        ) || "0"}{" "}
+                        Point
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {error && (
-                <div className="text-red-500 text-sm mb-4">{error}</div>
-              )}
-              <div>
-                <Label>
-                  <span className="text-gray-700 dark:text-gray-400">Nama</span>
-                  <input
-                    className="mt-1 block w-full text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    placeholder="Masukkan nama kurir"
-                    name="nama"
-                    value={formData.nama}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Label>
-              </div>
-              <div>
-                <Label>
-                  <span className="text-gray-700 dark:text-gray-400">
-                    Email
-                  </span>
-                  <input
-                    className="mt-1 block w-full text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    placeholder="Masukkan email kurir"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Label>
-              </div>
-              <div>
-                <Label>
-                  <span className="text-gray-700 dark:text-gray-400">
-                    Password
-                  </span>
-                  <input
-                    className="mt-1 block w-full text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    placeholder="Masukkan password"
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Label>
-              </div>
-              <div>
-                <Label>
-                  <span className="text-gray-700 dark:text-gray-400">
-                    Konfirmasi Password
-                  </span>
-                  <input
-                    className="mt-1 block w-full text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    placeholder="Konfirmasi password"
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Label>
               </div>
               <div className="flex justify-end mt-6">
                 <Button layout="outline" onClick={closeModal} className="mr-2">
@@ -458,16 +397,9 @@ function ListUser() {
                 </Button>
               </div>
             </div>
-          )}
-          {selectedUser && (
-            <div className="flex justify-end mt-6">
-              <Button layout="outline" onClick={closeModal}>
-                Tutup
-              </Button>
-            </div>
-          )}
+          </div>
         </div>
-      </Modal>
+      )}
     </Layout>
   );
 }

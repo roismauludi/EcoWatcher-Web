@@ -272,122 +272,134 @@ function Point() {
       </TableContainer>
 
       {/* Modal Detail */}
-      <Modal isOpen={isDetailModalOpen} onClose={closeDetailModal}>
-        <div className="p-6">
-          <div className="mb-4">
-            <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-300">
-              Detail Penukaran Point
-            </h4>
-          </div>
-          <div className="mb-4">
-            {selectedTransaction && (
-              <div className="space-y-6">
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                  <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
-                    Informasi Pengguna
-                  </h5>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Nama
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {selectedTransaction.nama}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Email
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {selectedTransaction.email}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                  <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
-                    Informasi Penukaran
-                  </h5>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Point Ditukar
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {selectedTransaction.pointUsed.toLocaleString("id-ID")}{" "}
-                        Point
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Nominal
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        Rp {selectedTransaction.nominal.toLocaleString("id-ID")}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Status
-                      </p>
-                      <Badge type={getBadgeType(selectedTransaction.status)}>
-                        {selectedTransaction.status}
-                      </Badge>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Tanggal Pengajuan
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {formatDate(selectedTransaction.timestamp)}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                  <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
-                    Informasi Rekening
-                  </h5>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Bank
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {selectedTransaction.jenisBank}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Nama Rekening
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {selectedTransaction.namaRekening}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-200">
-                        Nomor Rekening
-                      </p>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        {selectedTransaction.noRekening}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+      {isDetailModalOpen && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen px-4">
+            <div className="fixed inset-0 bg-gray-500 dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 transition-opacity"></div>
+            <div className="relative bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full p-6 shadow-xl overflow-x-auto">
+              <div className="mb-4">
+                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-300">
+                  Detail Penukaran Point
+                </h4>
               </div>
-            )}
-          </div>
-          <div className="flex justify-end">
-            <Button layout="outline" onClick={closeDetailModal}>
-              Tutup
-            </Button>
+              <div className="mb-4">
+                {selectedTransaction && (
+                  <div className="space-y-6">
+                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
+                        Informasi Pengguna
+                      </h5>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Nama
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {selectedTransaction.nama}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Email
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {selectedTransaction.email}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
+                        Informasi Penukaran
+                      </h5>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Point Ditukar
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {selectedTransaction.pointUsed.toLocaleString(
+                              "id-ID"
+                            )}{" "}
+                            Point
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Nominal
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            Rp{" "}
+                            {selectedTransaction.nominal.toLocaleString(
+                              "id-ID"
+                            )}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Status
+                          </p>
+                          <Badge
+                            type={getBadgeType(selectedTransaction.status)}
+                          >
+                            {selectedTransaction.status}
+                          </Badge>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Tanggal Pengajuan
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {formatDate(selectedTransaction.timestamp)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <h5 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
+                        Informasi Rekening
+                      </h5>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Bank
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {selectedTransaction.jenisBank}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Nama Rekening
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {selectedTransaction.namaRekening}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-200">
+                            Nomor Rekening
+                          </p>
+                          <p className="font-medium text-gray-900 dark:text-white">
+                            {selectedTransaction.noRekening}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-end">
+                <Button layout="outline" onClick={closeDetailModal}>
+                  Tutup
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-      </Modal>
+      )}
     </Layout>
   );
 }
