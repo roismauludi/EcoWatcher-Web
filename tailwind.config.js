@@ -13,6 +13,33 @@ module.exports = windmill({
     "./example/components/**/*.{js,ts,jsx,tsx}",
     "./example/containers/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    // ChartLegend dynamic colors
+    "bg-blue-500",
+    "bg-teal-600",
+    "bg-purple-600",
+    // RoundIcon dynamic colors (from cards/index/dashboard)
+    "text-orange-500",
+    "dark:text-orange-100",
+    "bg-orange-100",
+    "dark:bg-orange-500",
+    "text-green-500",
+    "dark:text-green-100",
+    "bg-green-100",
+    "dark:bg-green-500",
+    "text-blue-500",
+    "dark:text-blue-100",
+    "bg-blue-100",
+    "dark:bg-blue-500",
+    "text-teal-500",
+    "dark:text-teal-100",
+    "bg-teal-100",
+    "dark:bg-teal-500",
+    "text-purple-500",
+    "dark:text-purple-100",
+    "bg-purple-100",
+    "dark:bg-purple-500",
+  ],
   theme: {
     extend: {
       colors: {
