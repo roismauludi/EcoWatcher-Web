@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "../../context/ThemeContext";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import SidebarContext from "../../context/SidebarContext";
 
 interface HeaderProps {
   isSidebarOpen: boolean;
@@ -9,13 +10,15 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { isDarkMode, toggleTheme } = useTheme();
+  const { toggleSidebar: contextToggleSidebar } =
+    React.useContext(SidebarContext);
 
   return (
     <header className="z-10 py-4 bg-white dark:bg-gray-800 shadow-md">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         <button
           className="p-2 rounded-md lg:hidden"
-          onClick={toggleSidebar}
+          onClick={contextToggleSidebar}
           aria-label="Buka sidebar"
         >
           <svg
