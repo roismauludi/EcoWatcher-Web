@@ -524,139 +524,144 @@ function Dashboard() {
       </div>
 
       {/* Tabel */}
-      <TableContainer className="mb-8">
-        <Table>
-          <TableHeader>
-            <tr>
-              <TableCell>Nama Pengguna</TableCell>
-              <TableCell>Alamat</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Tanggal Penyetoran</TableCell>
-              <TableCell>Action</TableCell>
-            </tr>
-          </TableHeader>
-          <TableBody>
-            {displayedData.map((item) => {
-              const user = item.user;
-              return (
-                <TableRow
-                  key={`${item.id}-${user.id}`}
-                  className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
-                  onClick={() => openDetailModal(item)}
-                >
-                  <TableCell>
-                    <div className="flex items-center text-sm">
-                      <Avatar
-                        className="hidden mr-3 md:block"
-                        src="/assets/img/default.jpg"
-                        alt="User avatar"
-                      />
-                      <div>
-                        <p className="font-semibold text-gray-800 dark:text-gray-100">
-                          {user.nama}
-                        </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
-                          {user.level}
-                        </p>
+      <div className="overflow-x-auto">
+        <TableContainer className="mb-8">
+          <Table>
+            <TableHeader>
+              <tr>
+                <TableCell>Nama Pengguna</TableCell>
+                <TableCell>Alamat</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Tanggal Penyetoran</TableCell>
+                <TableCell>Action</TableCell>
+              </tr>
+            </TableHeader>
+            <TableBody>
+              {displayedData.map((item) => {
+                const user = item.user;
+                return (
+                  <TableRow
+                    key={`${item.id}-${user.id}`}
+                    className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+                    onClick={() => openDetailModal(item)}
+                  >
+                    <TableCell>
+                      <div className="flex items-center text-sm">
+                        <Avatar
+                          className="hidden mr-3 md:block"
+                          src="/assets/img/default.jpg"
+                          alt="User avatar"
+                        />
+                        <div>
+                          <p className="font-semibold text-gray-800 dark:text-gray-100">
+                            {user.nama}
+                          </p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            {user.level}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-sm text-gray-800 dark:text-gray-100">
-                      {item.address
-                        ? `${item.address.label_Alamat}, ${item.address.Kecamatan}, ${item.address["kota-kabupaten"]}, ${item.address.Kode_pos}`
-                        : "N/A"}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center">
-                      <Badge type={getBadgeType(item.status)}>
-                        {item.status}
-                      </Badge>
-                      {item.status === "Pending" && item.cancelReason && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedPenyetoran(item);
-                            setIsCancelModalOpen(true);
-                          }}
-                          className="ml-2 text-yellow-500 hover:text-yellow-700"
-                          title="Lihat permintaan pembatalan dari kurir"
-                        >
-                          <TrashIcon className="w-5 h-5" />
-                        </button>
-                      )}
-                      {item.status === "Dibatalkan" &&
-                        item.alasanPembatalan && (
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-sm text-gray-800 dark:text-gray-100">
+                        {item.address
+                          ? `${item.address.label_Alamat}, ${item.address.Kecamatan}, ${item.address["kota-kabupaten"]}, ${item.address.Kode_pos}`
+                          : "N/A"}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center">
+                        <Badge type={getBadgeType(item.status)}>
+                          {item.status}
+                        </Badge>
+                        {item.status === "Pending" && item.cancelReason && (
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               setSelectedPenyetoran(item);
                               setIsCancelModalOpen(true);
                             }}
-                            className="ml-2 text-red-500 hover:text-red-700"
-                            title="Lihat alasan pembatalan"
+                            className="ml-2 text-yellow-500 hover:text-yellow-700"
+                            title="Lihat permintaan pembatalan dari kurir"
                           >
                             <TrashIcon className="w-5 h-5" />
                           </button>
                         )}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-sm text-gray-800 dark:text-gray-100">
-                      {item.createdAt
-                        ? new Date(item.createdAt).toLocaleDateString("id-ID", {
-                            day: "2-digit",
-                            month: "long",
-                            year: "numeric",
-                          })
-                        : "N/A"}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-4">
-                      <Button
-                        layout="link"
-                        size="small"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCancel(item.id);
-                        }}
-                        disabled={item.status !== "Pending"}
-                        className={
-                          item.status !== "Pending"
-                            ? "text-gray-400 cursor-not-allowed"
-                            : "text-red-600"
-                        }
-                      >
-                        Batalkan
-                      </Button>
-                      <Button
-                        layout="link"
-                        size="small"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDelete(item.id);
-                        }}
-                      >
-                        <TrashIcon className="w-5 h-5" aria-hidden="true" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-        <TableFooter>
-          <Pagination
-            totalResults={totalResults}
-            resultsPerPage={resultsPerPage}
-            onChange={setPage}
-            label="Table navigation"
-          />
-        </TableFooter>
-      </TableContainer>
+                        {item.status === "Dibatalkan" &&
+                          item.alasanPembatalan && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedPenyetoran(item);
+                                setIsCancelModalOpen(true);
+                              }}
+                              className="ml-2 text-red-500 hover:text-red-700"
+                              title="Lihat alasan pembatalan"
+                            >
+                              <TrashIcon className="w-5 h-5" />
+                            </button>
+                          )}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-sm text-gray-800 dark:text-gray-100">
+                        {item.createdAt
+                          ? new Date(item.createdAt).toLocaleDateString(
+                              "id-ID",
+                              {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric",
+                              }
+                            )
+                          : "N/A"}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-4">
+                        <Button
+                          layout="link"
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCancel(item.id);
+                          }}
+                          disabled={item.status !== "Pending"}
+                          className={
+                            item.status !== "Pending"
+                              ? "text-gray-400 cursor-not-allowed"
+                              : "text-red-600"
+                          }
+                        >
+                          Batalkan
+                        </Button>
+                        <Button
+                          layout="link"
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(item.id);
+                          }}
+                        >
+                          <TrashIcon className="w-5 h-5" aria-hidden="true" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+          <TableFooter>
+            <Pagination
+              totalResults={totalResults}
+              resultsPerPage={resultsPerPage}
+              onChange={setPage}
+              label="Table navigation"
+            />
+          </TableFooter>
+        </TableContainer>
+      </div>
 
       {/* Modal Pembatalan */}
       {isCancelModalOpen && (
