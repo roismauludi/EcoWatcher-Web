@@ -386,14 +386,8 @@ function ListUser() {
                 </div>
               </div>
               <div className="flex justify-end mt-6">
-                <Button layout="outline" onClick={closeModal} className="mr-2">
-                  Batal
-                </Button>
-                <Button
-                  onClick={handleSubmit}
-                  className="bg-purple-600 hover:bg-purple-700 text-white"
-                >
-                  Simpan
+                <Button layout="outline" onClick={closeModal}>
+                  Tutup
                 </Button>
               </div>
             </div>
