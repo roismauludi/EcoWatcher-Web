@@ -38,6 +38,22 @@ module.exports = {
     "dark:text-purple-100",
     "bg-purple-100",
     "dark:bg-purple-500",
+    // Semua class dark: yang ditemukan di project
+    "dark:text-gray-100",
+    "dark:text-gray-200",
+    "dark:text-gray-300",
+    "dark:text-gray-400",
+    "dark:text-white",
+    "dark:bg-gray-700",
+    "dark:bg-gray-800",
+    "dark:bg-gray-900",
+    "dark:bg-red-900",
+    "dark:bg-green-900",
+    "dark:border-gray-600",
+    "dark:border-gray-700",
+    "dark:focus:shadow-outline-gray",
+    "dark:hover:bg-gray-700",
+    "dark:hover:text-gray-200",
   ],
   theme: {
     extend: {
