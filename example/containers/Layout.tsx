@@ -8,6 +8,7 @@ import Main from "../components/Main";
 import { auth } from "../../utils/firebase/config";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { SidebarProvider } from "../../context/SidebarContext";
+import Header from "../components/Header";
 
 interface ILayout {
   children: React.ReactNode;
@@ -62,24 +63,7 @@ function Layout({ children }: ILayout) {
       <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
         <Sidebar />
         <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="z-10 py-4 bg-white dark:bg-gray-800 shadow-md px-2 sm:px-6">
-            <div className="container flex items-center justify-between h-full mx-auto text-purple-600 dark:text-purple-300">
-              <div className="w-10"></div>
-              <div className="text-2xl font-extrabold text-purple-600 dark:text-purple-200 tracking-wide">
-                EcoWatcher
-              </div>
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                {isDarkMode ? (
-                  <SunIcon className="w-6 h-6 text-yellow-500" />
-                ) : (
-                  <MoonIcon className="w-6 h-6 text-gray-600" />
-                )}
-              </button>
-            </div>
-          </div>
+          <Header />
           <Main>{children}</Main>
         </div>
       </div>

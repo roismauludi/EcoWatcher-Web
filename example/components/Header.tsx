@@ -3,12 +3,7 @@ import { useTheme } from "../../context/ThemeContext";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import SidebarContext from "../../context/SidebarContext";
 
-interface HeaderProps {
-  isSidebarOpen: boolean;
-  toggleSidebar: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ isSidebarOpen, toggleSidebar }) => {
+const Header: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme();
   const { toggleSidebar: contextToggleSidebar } =
     React.useContext(SidebarContext);
