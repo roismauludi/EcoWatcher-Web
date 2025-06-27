@@ -48,7 +48,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
   };
 
   return (
-    <div className="flex flex-col h-full text-gray-500 dark:text-gray-400">
+    <div className="flex flex-col h-full text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800">
       <div className="flex-1">
         <Link href="/#" passHref>
           <div className="ml-6 py-6">

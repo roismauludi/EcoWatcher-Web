@@ -59,11 +59,7 @@ function Layout({ children }: ILayout) {
 
   return (
     <SidebarProvider>
-      <div
-        className={`flex h-screen ${
-          isDarkMode ? "dark bg-gray-900" : "bg-gray-50"
-        }`}
-      >
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
         <Sidebar />
         <div className="flex flex-col flex-1 overflow-hidden">
           <div className="z-10 py-4 bg-white dark:bg-gray-800 shadow-md">

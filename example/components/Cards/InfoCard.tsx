@@ -8,7 +8,7 @@ interface IInfoCard {
 
 function InfoCard({ title, value, children }: IInfoCard) {
   return (
-    <Card>
+    <Card className="bg-white dark:bg-gray-800">
       <CardBody className="flex items-center">
         {children}
         <div>
