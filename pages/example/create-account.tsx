@@ -55,6 +55,9 @@ const CreateAccount: FC = () => {
                   css=""
                   type="email"
                   placeholder="john@doe.com"
+                  crossOrigin={undefined}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
                 />
               </Label>
               <Label className="mt-4">
@@ -64,6 +67,9 @@ const CreateAccount: FC = () => {
                   css=""
                   placeholder="***************"
                   type="password"
+                  crossOrigin={undefined}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
                 />
               </Label>
               <Label className="mt-4">
@@ -73,18 +79,27 @@ const CreateAccount: FC = () => {
                   css=""
                   placeholder="***************"
                   type="password"
+                  crossOrigin={undefined}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
                 />
               </Label>
 
               <Label className="mt-6" check>
-                <Input css="" type="checkbox" />
+                <Input
+                  css=""
+                  type="checkbox"
+                  crossOrigin={undefined}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
+                />
                 <span className="ml-2">
                   I agree to the{" "}
                   <span className="underline">privacy policy</span>
                 </span>
               </Label>
 
-              <Link href="/example/login" passHref={true}>
+              <Link href="/example/login">
                 <Button block className="mt-4">
                   Create account
                 </Button>
@@ -93,7 +108,7 @@ const CreateAccount: FC = () => {
               <hr className="my-8" />
 
               <p className="mt-4">
-                <Link href="/example/login">
+                <Link href="/example/login" legacyBehavior>
                   <a className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline">
                     Already have an account? Login
                   </a>

@@ -50,7 +50,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
   return (
     <div className="flex flex-col h-full text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800">
       <div className="flex-1">
-        <Link href="/#" passHref>
+        <Link href="/#" passHref legacyBehavior>
           <div className="ml-6 py-6">
             <a className="text-lg font-bold text-gray-800 dark:text-gray-200">
               {appName}
@@ -67,7 +67,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
               />
             ) : (
               <li className="relative px-6 py-3" key={route.name}>
-                <Link href={route.path || "#"} scroll={false}>
+                <Link href={route.path || "#"} scroll={false} legacyBehavior>
                   <a
                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
                       routeIsActive(pathname, route)
@@ -121,7 +121,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
             </span>
           </button>
         ) : (
-          <Link href="/example/login">
+          <Link href="/example/login" legacyBehavior>
             <a className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 rounded-lg">
               <svg
                 className="w-5 h-5"

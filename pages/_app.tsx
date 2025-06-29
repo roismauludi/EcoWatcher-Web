@@ -5,6 +5,7 @@ import { Windmill } from "@windmill/react-ui";
 import type { AppProps } from "next/app";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 import { ThemeProvider } from "../context/ThemeContext";
+import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // suppress useLayoutEffect warnings when running outside a browser
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Windmill>
         <div>{user ? `Logged in as ${user.email}` : ""}</div>
+        <Analytics />
       </AuthProvider>
     </ThemeProvider>
   );

@@ -83,7 +83,7 @@ function SidebarSubmenu({ route, linkClicked }: ISidebarSubmenu) {
                 className="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 key={r.name}
               >
-                <Link href={r.path || ""} scroll={false}>
+                <Link href={r.path || ""} scroll={false} legacyBehavior>
                   <a
                     className={`w-full inline-block ${
                       routeIsActive(pathname, r)

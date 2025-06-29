@@ -32,10 +32,17 @@ function ForgotPassword() {
 
               <Label>
                 <span>Email</span>
-                <Input className="mt-1" css="" placeholder="Jane Doe" />
+                <Input
+                  className="mt-1"
+                  css=""
+                  placeholder="Jane Doe"
+                  crossOrigin={undefined}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
+                />
               </Label>
 
-              <Link href="/example" passHref={true}>
+              <Link href="/example">
                 <Button tag={"button"} block className="mt-4">
                   Recover password
                 </Button>

@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
           <div className="px-4 py-4">
             <ul className="mt-6">
               <li className="relative px-6 py-3">
-                <Link href="/example">
+                <Link href="/example" legacyBehavior>
                   <a
                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
                       router.pathname === "/example"
@@ -70,7 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
                 </Link>
               </li>
               <li className="relative px-6 py-3">
-                <Link href="/example/point">
+                <Link href="/example/point" legacyBehavior>
                   <a
                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
                       router.pathname === "/example/point"
@@ -96,7 +96,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
                 </Link>
               </li>
               <li className="relative px-6 py-3">
-                <Link href="/example/penyetoran">
+                <Link href="/example/penyetoran" legacyBehavior>
                   <a
                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
                       router.pathname === "/example/penyetoran"
@@ -122,7 +122,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
                 </Link>
               </li>
               <li className="relative px-6 py-3">
-                <Link href="/example/settings">
+                <Link href="/example/settings" legacyBehavior>
                   <a
                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
                       router.pathname === "/example/settings"
@@ -181,7 +181,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
               </span>
             </button>
           ) : (
-            <Link href="/example/login">
+            <Link href="/example/login" legacyBehavior>
               <a className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 rounded-lg">
                 <svg
                   className="w-5 h-5"
