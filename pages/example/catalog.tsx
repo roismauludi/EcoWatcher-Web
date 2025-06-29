@@ -627,6 +627,9 @@ function Catalog() {
                     onChange={(e) =>
                       setNewItem({ ...newItem, Nama_barang: e.target.value })
                     }
+                    crossOrigin={undefined}
+                    onPointerEnterCapture={() => {}}
+                    onPointerLeaveCapture={() => {}}
                   />
                 </Label>
                 <Label>
@@ -656,6 +659,9 @@ function Catalog() {
                         Point: parseInt(e.target.value) || 0,
                       })
                     }
+                    crossOrigin={undefined}
+                    onPointerEnterCapture={() => {}}
+                    onPointerLeaveCapture={() => {}}
                   />
                 </Label>
                 <Label>
@@ -667,6 +673,9 @@ function Catalog() {
                     onChange={(e) =>
                       setNewItem({ ...newItem, Type: e.target.value })
                     }
+                    crossOrigin={undefined}
+                    onPointerEnterCapture={() => {}}
+                    onPointerLeaveCapture={() => {}}
                   />
                 </Label>
                 <Label>
