@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../../../utils/firebase/config";
 import { signOut, onAuthStateChanged, User } from "firebase/auth";
 import Cookies from "js-cookie";
+import { useNotifications } from "../../../context/NotificationContext";
 
 function Icon({ icon, ...props }: IIcon) {
   // @ts-ignore
@@ -25,6 +26,7 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
   const appName = process.env.NEXT_PUBLIC_APP_NAME;
   const [user, setUser] = useState<User | null>(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { notifications } = useNotifications();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -89,6 +91,20 @@ function SidebarContent({ linkClicked }: ISidebarContent) {
                       icon={route.icon || ""}
                     />
                     <span className="ml-4">{route.name}</span>
+
+                    {/* Notification Badge */}
+                    {route.notificationKey &&
+                      notifications[
+                        route.notificationKey as keyof typeof notifications
+                      ] > 0 && (
+                        <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                          {
+                            notifications[
+                              route.notificationKey as keyof typeof notifications
+                            ]
+                          }
+                        </span>
+                      )}
                   </a>
                 </Link>
               </li>

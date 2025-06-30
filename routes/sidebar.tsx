@@ -11,6 +11,7 @@ interface IRoute {
   routes?: IRoute[];
   checkActive?(pathname: String, route: IRoute): boolean;
   exact?: boolean;
+  notificationKey?: string; // Key untuk notifikasi
 }
 
 export function routeIsActive(pathname: String, route: IRoute): boolean {
@@ -36,6 +37,7 @@ const routes: IRoute[] = [
     path: "/example/point", // the url
     icon: "MoneyIcon", // the component being exported from icons/index.js
     name: "Point", // name that appear in Sidebar
+    notificationKey: "unverifiedPoints",
   },
   {
     path: "/example/catalog", // the url
@@ -46,6 +48,7 @@ const routes: IRoute[] = [
     path: "/example/listuser",
     icon: "PeopleIcon",
     name: "Daftar Pengguna",
+    notificationKey: "unverifiedUsers",
   },
   // {
   //   path: "/example/cards",

@@ -18,6 +18,7 @@ import {
   Input,
 } from "@windmill/react-ui";
 import { Modal } from "@windmill/react-ui";
+import { useNotifications } from "../../context/NotificationContext";
 
 // Interface untuk data pengguna
 interface UserData {
@@ -32,6 +33,7 @@ interface UserData {
   point?: number;
   totalpointkeluar?: number;
   totalpointmasuk?: number;
+  status?: string;
 }
 
 function ListUser() {
@@ -47,7 +49,10 @@ function ListUser() {
     confirmPassword: "",
   });
   const [error, setError] = useState("");
+  const [verifying, setVerifying] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState("");
   const resultsPerPage = 10;
+  const { refreshNotifications } = useNotifications();
 
   useEffect(() => {
     fetchUsers();
@@ -133,6 +138,55 @@ function ListUser() {
     }
   };
 
+  const handleVerifikasi = async (userId: string) => {
+    setVerifying(userId);
+    setError("");
+    setSuccessMessage("");
+
+    try {
+      const response = await fetch("/api/pengguna/verifikasi", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userId,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSuccessMessage("Akun berhasil diverifikasi!");
+        // Refresh data pengguna
+        fetchUsers();
+
+        // Jika verifikasi dilakukan dari modal, tutup modal setelah berhasil
+        if (selectedUser && selectedUser.id === userId) {
+          // Tutup modal setelah verifikasi berhasil
+          setTimeout(() => {
+            closeModal();
+          }, 1000); // Delay 1 detik agar user bisa melihat pesan sukses
+        }
+
+        // Hapus pesan sukses setelah 3 detik
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
+
+        // Memanggil refreshNotifications
+        refreshNotifications();
+      } else {
+        setError(result.error || "Gagal memverifikasi akun");
+      }
+    } catch (error) {
+      console.error("Error saat memverifikasi akun:", error);
+      setError("Terjadi kesalahan saat memverifikasi akun");
+    } finally {
+      setVerifying(null);
+    }
+  };
+
   // Hitung total hasil dan data yang akan ditampilkan
   const totalResults = users.length;
   const displayedUsers = users.slice(
@@ -156,6 +210,28 @@ function ListUser() {
     }
   };
 
+  // Fungsi untuk mendapatkan warna badge berdasarkan status
+  const getStatusBadgeType = (status: string) => {
+    if (!status) return "neutral";
+
+    switch (status.toLowerCase()) {
+      case "aktif":
+        return "success";
+      case "non-aktif":
+        return "danger";
+      default:
+        return "neutral";
+    }
+  };
+
+  // Fungsi untuk menampilkan status berdasarkan level
+  const getStatusDisplay = (user: UserData) => {
+    if (user.level?.toLowerCase() === "penyumbang") {
+      return user.status || "Tidak ada status";
+    }
+    return "Aktif"; // Default untuk level selain penyumbang
+  };
+
   const openModal = (user: UserData | null) => {
     setSelectedUser(user);
     setIsModalOpen(true);
@@ -171,6 +247,7 @@ function ListUser() {
       confirmPassword: "",
     });
     setError("");
+    setSuccessMessage("");
   };
 
   return (
@@ -184,6 +261,18 @@ function ListUser() {
           + Tambah Kurir
         </Button>
       </div>
+
+      {/* Notifikasi */}
+      {successMessage && (
+        <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+          {successMessage}
+        </div>
+      )}
+      {error && (
+        <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+          {error}
+        </div>
+      )}
 
       <style jsx global>{`
         tr.clickable {
@@ -204,6 +293,7 @@ function ListUser() {
               <TableCell>Pengguna</TableCell>
               <TableCell>Level</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Aksi</TableCell>
             </tr>
           </TableHeader>
           <TableBody>
@@ -214,12 +304,14 @@ function ListUser() {
                 </TableCell>
                 <TableCell>&nbsp;</TableCell>
                 <TableCell>&nbsp;</TableCell>
+                <TableCell>&nbsp;</TableCell>
               </TableRow>
             ) : displayedUsers.length === 0 ? (
               <TableRow>
                 <TableCell>
                   <div className="text-center">Tidak ada data pengguna</div>
                 </TableCell>
+                <TableCell>&nbsp;</TableCell>
                 <TableCell>&nbsp;</TableCell>
                 <TableCell>&nbsp;</TableCell>
               </TableRow>
@@ -251,7 +343,27 @@ function ListUser() {
                     <Badge type={getBadgeType(user.level)}>{user.level}</Badge>
                   </TableCell>
                   <TableCell>
-                    <Badge type="success">Aktif</Badge>
+                    <Badge type={getStatusBadgeType(user.status || "")}>
+                      {getStatusDisplay(user)}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    {user.level?.toLowerCase() === "penyumbang" &&
+                      user.status?.toLowerCase() === "non-aktif" && (
+                        <Button
+                          layout="outline"
+                          size="small"
+                          disabled={verifying === user.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleVerifikasi(user.id);
+                          }}
+                        >
+                          {verifying === user.id
+                            ? "Memverifikasi..."
+                            : "Verifikasi"}
+                        </Button>
+                      )}
                   </TableCell>
                 </tr>
               ))
@@ -309,6 +421,20 @@ function ListUser() {
                         </Badge>
                       </p>
                     </div>
+                    {selectedUser.level?.toLowerCase() === "penyumbang" && (
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Status
+                        </p>
+                        <p className="font-medium">
+                          <Badge
+                            type={getStatusBadgeType(selectedUser.status || "")}
+                          >
+                            {selectedUser.status || "Tidak ada status"}
+                          </Badge>
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -386,6 +512,18 @@ function ListUser() {
                 </div>
               </div>
               <div className="flex justify-end mt-6">
+                {selectedUser.level?.toLowerCase() === "penyumbang" &&
+                  selectedUser.status?.toLowerCase() === "non-aktif" && (
+                    <Button
+                      className="mr-2 bg-green-600 hover:bg-green-700 text-white"
+                      disabled={verifying === selectedUser.id}
+                      onClick={() => handleVerifikasi(selectedUser.id)}
+                    >
+                      {verifying === selectedUser.id
+                        ? "Memverifikasi..."
+                        : "Verifikasi Akun"}
+                    </Button>
+                  )}
                 <Button layout="outline" onClick={closeModal}>
                   Tutup
                 </Button>
